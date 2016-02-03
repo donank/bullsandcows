@@ -1,10 +1,7 @@
 package com.qubitgames.donank.bullsandcows;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,36 +9,63 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import static com.qubitgames.donank.bullsandcows.NumberGenerator.number_generate;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        Button btn_guess = (Button) findViewById(R.id.button_guess);
+
+        btn_guess.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v) {
+                checkmate();
             }
+
+            public void checkmate() {
+                boolean guessed = false;
+                EditText guess = (EditText) findViewById(R.id.guess_number);
+                TextView log = (TextView) findViewById(R.id.status);
+
+                int guess_num = Integer.parseInt(guess.getText().toString());
+                String target = String.valueOf(number_generate());
+                int tries = 0;
+
+                do {
+                    int bulls = 0;
+                    int cows = 0;
+
+                    tries++;
+                    String guessStr = guess_num + "";
+                    for (int i = 0; i < 4; i++) {
+                        if (guessStr.charAt(i) == target.charAt(i)) {
+                            bulls++;
+                        } else if (target.contains(guessStr.charAt(i) + "")) {
+                            cows++;
+                        }
+                    }
+                    if (bulls == 4) {
+                        guessed = true;
+                    } else {
+                        log.setText(cows + getString(R.string.cowsand) + bulls + getString(R.string.bulls));
+
+                    }
+                } while (!(!(tries == 7) && guessed));
+                if (tries < 7) {
+                    log.setText(getString(R.string.youwon) + tries + getString(R.string.guesses));
+                } else {
+                    log.setText(getString(R.string.youlost) + guess_num);
+                }
+            }
+
+
         });
-        Button guess_btn = (Button)findViewById(R.id.button_guess);
-        EditText gen_number = (EditText)findViewById(R.id.guess_number);
-        TextView log = (TextView)findViewById(R.id.status);
-
-
-
-
-
 
     }
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -52,9 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement

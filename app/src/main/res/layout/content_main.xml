@@ -1,9 +1,85 @@
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment"
     android:name="com.qubitgames.donank.bullsandcows.MainActivityFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:layout="@layout/fragment_main" />
+    android:background="#ff845a"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <TextView
+        android:text="@string/custom"
+        android:layout_width="wrap_content"
+        android:textColor="#0a0a09"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:paddingLeft="40dp"
+        android:id="@+id/custom"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="true"
+        android:height="40dp"
+        tools:ignore="RtlSymmetry" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberSigned"
+        android:ems="10"
+        android:textAlignment="center"
+        android:textSize="60sp"
+        android:width="250dp"
+        android:id="@+id/guess_number"
+        android:layout_centerHorizontal="true"
+        android:background="#f7f3f3"
+        android:layout_below="@+id/custom" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/submit"
+        android:id="@+id/button_guess"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/guess_number"
+        android:layout_centerHorizontal="true"
+        android:textSize="35sp"
+        android:width="150dp"
+        android:onClick="checkmate"
+        android:clickable="true"
+        android:background="@drawable/button_selector" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/status_text"
+        android:text="@string/status"
+        android:layout_below="@+id/button_guess"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="20dp"
+        android:background="#ff845a"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textColor="#060606" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/status"
+        android:layout_below="@+id/status_text"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="30dp"
+        android:background="#ff845a"
+        android:textAlignment="center"
+        android:textSize="250sp"
+        android:textColor="#060606" />
+
+</RelativeLayout>

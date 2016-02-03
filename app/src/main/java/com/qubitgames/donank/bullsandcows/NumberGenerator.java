@@ -1,4 +1,4 @@
-package com.qubitgames.donank.cowsandbulls;
+package com.qubitgames.donank.bullsandcows;
 
 import java.util.Random;
 
@@ -7,9 +7,10 @@ public class NumberGenerator {
     public static String number_generate(){
 
         Random gen= new Random();
-        int target= 0;
+        int target;
         while(hasDupes(target= (gen.nextInt(9000) + 1000)));
-        String targetStr = target +"";
+        String targetStr;
+        targetStr = target +"";
         return targetStr;
     }
 
