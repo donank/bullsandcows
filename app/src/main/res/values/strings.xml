@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Bulls And Cows</string>
+    <string name="action_settings">Settings</string>
+    <string name="custom">Enter a 4-digit number!</string>
+</resources>
