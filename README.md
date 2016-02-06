@@ -1,10 +1,10 @@
-# bullsandcows
+# Bulls And Cows
 A simple and fun game to guess a 4-digit number.This is built only for educational purpose.
 
 Future Commits will include
+> bug fixes.
 
-bug fixes.
+> UI Changes: Adding the Material Design.
 
-UI Changes: Change the crappy design to Material Design.
+> Addition of Multiplayer(Bluetooth Support, Wifi Support etc). 
 
-Addition of Multiplayer(Bluetooth Support, Wifi Support etc).
