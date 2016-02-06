@@ -5,8 +5,8 @@
     <string name="submit">submit</string>
     <string name="status">STATUS</string>
     <string name="youlost">"Ow!!You lost. The Correct number is "</string>
-    <string name="youwon">"YAY!!You won after "</string>
     <string name="guesses">" guesses!"</string>
     <string name="cowsand">" Cows and "</string>
     <string name="bulls">" Bulls."</string>
+    <string name="youwon">"Yay!! You Won! after "</string>
 </resources>

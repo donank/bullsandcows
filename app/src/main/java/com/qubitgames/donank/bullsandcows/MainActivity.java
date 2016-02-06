@@ -13,6 +13,8 @@ import static com.qubitgames.donank.bullsandcows.NumberGenerator.number_generate
 
 public class MainActivity extends AppCompatActivity {
 
+    int tries = 0;
+    String target = String.valueOf(number_generate());
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,45 +25,8 @@ public class MainActivity extends AppCompatActivity {
         btn_guess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkmate();
+                checkmate(v);
             }
-
-            public void checkmate() {
-                boolean guessed = false;
-                EditText guess = (EditText) findViewById(R.id.guess_number);
-                TextView log = (TextView) findViewById(R.id.status);
-
-                int guess_num = Integer.parseInt(guess.getText().toString());
-                String target = String.valueOf(number_generate());
-                int tries = 0;
-
-                do {
-                    int bulls = 0;
-                    int cows = 0;
-
-                    tries++;
-                    String guessStr = guess_num + "";
-                    for (int i = 0; i < 4; i++) {
-                        if (guessStr.charAt(i) == target.charAt(i)) {
-                            bulls++;
-                        } else if (target.contains(guessStr.charAt(i) + "")) {
-                            cows++;
-                        }
-                    }
-                    if (bulls == 4) {
-                        guessed = true;
-                    } else {
-                        log.setText(cows + getString(R.string.cowsand) + bulls + getString(R.string.bulls));
-
-                    }
-                } while (!(!(tries == 7) && guessed));
-                if (tries < 7) {
-                    log.setText(getString(R.string.youwon) + tries + getString(R.string.guesses));
-                } else {
-                    log.setText(getString(R.string.youlost) + guess_num);
-                }
-            }
-
 
         });
 
@@ -86,4 +51,40 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-}
+
+    public void checkmate(View view) {
+
+        EditText guess = (EditText) findViewById(R.id.guess_number);
+        TextView log = (TextView) findViewById(R.id.status);
+
+        int guess_num = Integer.parseInt(guess.getText().toString());
+
+            int bulls = 0;
+            int cows = 0;
+
+            tries++;
+            String guessStr = guess_num + "";
+            for (int i = 0; i < 4; i++) {
+                if (guessStr.charAt(i) == target.charAt(i)) {
+                    bulls++;
+                } else if (target.contains(guessStr.charAt(i) + "")) {
+                    cows++;
+                }
+            }
+            if (bulls == 4) {
+                log.append("\n"+getString(R.string.youwon) + tries + getString(R.string.guesses));
+
+            }
+            else if(tries == 8){
+                log.append("\n"+getString(R.string.youlost) + target);
+
+            }
+            else {
+                log.setText(cows + getString(R.string.cowsand) + bulls + getString(R.string.bulls) + "\nCount: " + tries);
+
+            }
+
+    }
+    }
+
+
